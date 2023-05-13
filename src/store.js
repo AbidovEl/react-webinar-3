@@ -1,6 +1,8 @@
 /**
  * Хранилище состояния приложения
  */
+import * as utils from './utils.js';
+
 class Store {
   constructor(initState = {}) {
     this.state = initState;
@@ -44,7 +46,7 @@ class Store {
   addItem() {
     this.setState({
       ...this.state,
-      list: [...this.state.list, {code: this.getNewCode(this.state.list), title: 'Новая запись', count: 0}]
+      list: [...this.state.list, {code: utils.getNewCode(this.state.list), title: 'Новая запись', count: 0}]
     })
   };
 
@@ -82,28 +84,6 @@ class Store {
         return item;
       })
     })
-  }
-  // Для уникальности кода
-  getNewCode(list){
-    let max = 0
-    for(let item of list){
-        if(item.code > max){
-            max = item.code
-        }
-    }
-    return max + 1
-  }
-
-  // Для правильного написания раз или раза
-  getRazOrRaza(num){
-    if (num % 10 === 1 && num % 100 !== 11) {
-      return num + ' раз';
-    } else if ((num % 10 === 2 || num % 10 === 3 || num % 10 === 4) && 
-              !(num % 100 >= 12 && num % 100 <= 14)) {
-      return num + ' раза';
-    } else {
-      return num + ' раз';
-    }
   }
 }
 
