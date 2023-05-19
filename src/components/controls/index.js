@@ -2,20 +2,21 @@ import React from "react";
 import PropTypes from 'prop-types';
 import './style.css';
 
-function Controls({onAdd}){
+function Controls({onOpenModalWindow}){
   return (
     <div className='Controls'>
-      <button onClick={() => onAdd()}>Добавить</button>
+      <div className="productBin">В корзине: пусто</div>
+      <button onClick={() => onOpenModalWindow()}>Перейти</button>
     </div>
   )
 }
 
 Controls.propTypes = {
-  onAdd: PropTypes.func
+  onOpenModalWindow: PropTypes.func
 };
 
 Controls.defaultProps = {
-  onAdd: () => {}
+  onOpenModalWindow: () => {}
 }
 
 export default React.memo(Controls);

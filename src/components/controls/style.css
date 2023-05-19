@@ -3,3 +3,8 @@
   justify-content: flex-end;
   padding: 20px;
 }
+
+.productBin {
+  font-size: 18px;
+  margin-right: 15px;
+}

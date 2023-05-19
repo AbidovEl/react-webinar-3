@@ -1,6 +1,7 @@
 .Item {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   transition: background-color 1s;
 }
 
@@ -16,6 +17,28 @@
 .Item-title {
   width: 100%;
   padding: 20px 10px;
+}
+
+.Item-price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 18px;
+  padding: 20px 20px 20px 10px;
+}
+
+.Item-price-number {
+  flex-grow: 4;
+}
+
+.rub {
+	font-family: arial;
+	vertical-align: middle;
+	border-bottom: 0.07em solid;
+	line-height: 0.2em;
+	display: inline-block;
+	width: 0.5em;
+  flex-grow: 1;
 }
 
 .Item-actions {
