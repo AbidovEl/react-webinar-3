@@ -1,35 +1,30 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
-import {plural} from "../../utils";
 import './style.css';
+import { cn as bem } from '@bem-react/classname';
 
-function Item(props){
-
-  // Счётчик выделений
-  // const [count, setCount] = useState(0);
+function Item({item, onClick, btnTitle}){
+  const cn = bem('Item')
 
   const callbacks = {
-    // onClick: () => {
-    //   props.onSelect(props.item.code);
-    //   if (!props.item.selected) {
-    //     setCount(count + 1);
-    //   }
-    // },
+    onClick: () => {
+      e.stopPropagation();
+      onClick(item.code)
+    },
   }
 
   return (
-    <div className='Item'>
-      <div className='Item-code'>{props.item.code}</div>
-      <div className='Item-title'>
-        {props.item.title}
+    <div className={cn()}>
+      <div className={cn('code')}>{item.code}</div>
+      <div className={cn('title')}>
+        {item.title}
       </div>
-      <div className='Item-price'>
-        <div className="Item-price-number">{props.item.price}</div>
-        <div className="rub">P</div>
-      </div>
-      <div className='Item-actions'>
-        <button onClick={callbacks.onAdd}>
-          Добавить
+      <div className={cn('actions')}>
+        <div className={cn('price')}>
+          <span>{item.price}</span>
+        </div>
+        <button onClick={callbacks.onClick}>
+          {btnTitle}
         </button>
       </div>
     </div>
@@ -40,12 +35,14 @@ Item.propTypes = {
   item: PropTypes.shape({
     code: PropTypes.number,
     title: PropTypes.string,
+    price: PropTypes.number,
+    count: PropTypes.number,
   }).isRequired,
-  onAdd: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Item.defaultProps = {
-  onAdd: () => {},
+  onClick: () => {},
 }
 
 export default React.memo(Item);
